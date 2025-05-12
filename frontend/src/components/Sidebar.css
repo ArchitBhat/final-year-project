@@ -1,0 +1,54 @@
+.sidebar {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1c1c1c;
+  transition: all 0.3s;
+  overflow-x: hidden;
+  padding-top: 10px;
+}
+
+.navbar{
+  background-color: #1c1c1c;
+}
+
+.nav-padding{
+  padding-left: 420%;
+  
+}
+
+.sidebar.collapsed {
+  width: 70px;
+}
+
+.sidebar .nav-link {
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #343a40;
+  border-radius: 8px;
+}
+
+.sidebar .nav-link i {
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+
+.toggle-btn {
+  text-align: right;
+}
+
+.sidebar.collapsed .nav-link {
+  justify-content: center;
+}
+
+.sidebar.collapsed .nav-link i {
+  margin: 0;
+}
+
