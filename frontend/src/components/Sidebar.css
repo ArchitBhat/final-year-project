@@ -1,54 +1,179 @@
+/* Sidebar Base Styles */
 .sidebar {
-  width: 300px;
+  width: 280px;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #1c1c1c;
-  transition: all 0.3s;
-  overflow-x: hidden;
-  padding-top: 10px;
-}
-
-.navbar{
-  background-color: #1c1c1c;
-}
-
-.nav-padding{
-  padding-left: 420%;
-  
+  background: linear-gradient(180deg, #2a2a2a, #1c1c1c);
+  backdrop-filter: blur(10px);
+  transition: width 0.3s ease-in-out;
+  padding: 20px 15px;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
 }
 
 .sidebar.collapsed {
-  width: 70px;
+  width: 80px;
 }
 
-.sidebar .nav-link {
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-}
-
-.sidebar .nav-link:hover {
-  background-color: #343a40;
-  border-radius: 8px;
-}
-
-.sidebar .nav-link i {
-  margin-right: 10px;
-  font-size: 1.3rem;
-}
-
+/* Toggle Button */
 .toggle-btn {
   text-align: right;
+  margin-bottom: 20px;
 }
 
+.toggle-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.toggle-button i {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+/* Navigation Links */
+.nav {
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin-bottom: 10px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  transform: translateX(5px);
+}
+
+.nav-link i {
+  font-size: 1.4rem;
+  margin-right: 15px;
+  transition: margin 0.3s ease;
+}
+
+.nav-link span {
+  white-space: nowrap;
+}
+
+/* Collapsed State */
 .sidebar.collapsed .nav-link {
   justify-content: center;
+  padding: 12px;
 }
 
 .sidebar.collapsed .nav-link i {
-  margin: 0;
+  margin-right: 0;
 }
 
+.sidebar.collapsed .nav-link span {
+  display: none;
+}
+
+/* Logout Button */
+.logout-container {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 15px;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #ff4d4f, #ff7878);
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background: linear-gradient(90deg, #ff7878, #ff4d4f);
+  transform: scale(1.05);
+}
+
+.logout-button i {
+  font-size: 1.4rem;
+  margin-right: 10px;
+}
+
+.sidebar.collapsed .logout-button {
+  padding: 12px;
+}
+
+.sidebar.collapsed .logout-button i {
+  margin-right: 0;
+}
+
+.sidebar.collapsed .logout-button span {
+  display: none;
+}
+
+/* Navbar Styles (for integration) */
+.navbar {
+  background-color: #1c1c1c;
+  padding: 15px 20px;
+  z-index: 999;
+}
+
+/* Adjust content padding to account for sidebar */
+.nav-padding {
+  padding-left: 300px; /* Matches sidebar width */
+  transition: padding-left 0.3s ease-in-out;
+}
+
+.sidebar.collapsed ~ .nav-padding {
+  padding-left: 100px; /* Matches collapsed sidebar width */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 220px;
+  }
+
+  .sidebar.collapsed {
+    width: 60px;
+  }
+
+  .nav-padding {
+    padding-left: 240px;
+  }
+
+  .sidebar.collapsed ~ .nav-padding {
+    padding-left: 80px;
+  }
+}
