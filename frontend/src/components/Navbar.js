@@ -3,15 +3,11 @@ import './Sidebar.css';
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark">
-      <div className='navbar'>
-      <div className="container">
-        <div className='nav-padding'>
-        <a className="navbar-brand lodge-logo text-light" href="/">
-          Gold Castle Lodge
+    <nav className="navbar sticky-top shadow-sm py-2 custom-navbar">
+      <div className="container d-flex justify-content-center">
+        <a className="navbar-brand m-0 responsive-brand" href="/">
+          GOLD CASTLE LODGE
         </a>
-        </div>
-      </div>
       </div>
     </nav>
   );
