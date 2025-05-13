@@ -30,7 +30,7 @@ export default function CustomerHistory() {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h4 className="mb-0">Customer Booking History</h4>
         <div className="d-flex align-items-center">
-          <label className="form-label me-2 mb-0 fw-bold">Sort By:</label>
+          <label className="form-label me-2 mb-0 fw-bold text-white">Sort By:</label>
           <select
             className="form-select form-select-sm me-3"
             value={sortBy}
