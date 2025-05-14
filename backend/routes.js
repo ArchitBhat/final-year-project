@@ -1,5 +1,3 @@
-// UPDATED routes.js with sort order support for bookings
-
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
@@ -9,6 +7,13 @@ const Room = require('./models/Room');
 const Booking = require('./models/Booking');
 const Staff = require('./models/staff');
 const Expense = require('./models/Expense');
+
+// In-memory users (for demo only)
+const USERS = [
+  { id: 1, username: 'admin', password: 'admin123', email: 'admin@example.com' },
+  { id: 2, username: 'manager', password: 'manager123', email: 'manager@example.com' },
+];
+let nextUserId = 3;
 
 // Add Room
 router.post('/rooms', async (req, res) => {
@@ -23,9 +28,7 @@ router.get('/rooms', async (req, res) => {
   const bookings = await Booking.find();
 
   const occupiedRooms = new Set();
-  bookings.forEach(b => {
-    occupiedRooms.add(b.roomNo);
-  });
+  bookings.forEach(b => occupiedRooms.add(b.roomNo));
 
   const availableRooms = rooms.filter(r => !occupiedRooms.has(r.roomNo));
   res.send(availableRooms);
@@ -38,7 +41,7 @@ router.post('/bookings', async (req, res) => {
   res.send(booking);
 });
 
-// ✅ Updated: Get all Bookings with optional sorting and order
+// Get all Bookings with optional sorting
 router.get('/bookings', async (req, res) => {
   const sortBy = req.query.sortBy;
   const order = req.query.order === 'desc' ? -1 : 1;
@@ -90,11 +93,22 @@ router.get('/profits', async (req, res) => {
   res.json(summary);
 });
 
-// Dummy Users
-const USERS = [
-  { id: 1, username: 'admin', password: 'admin123' },
-  { id: 2, username: 'manager', password: 'manager123' },
-];
+// ✅ Register Route
+router.post('/register', (req, res) => {
+  const { username, password, email } = req.body;
+
+  if (!username || !password || !email) {
+    return res.status(400).json({ success: false, message: 'All fields are required' });
+  }
+
+  const existingUser = USERS.find(u => u.username === username);
+  if (existingUser) {
+    return res.status(409).json({ success: false, message: 'Username already exists' });
+  }
+
+  USERS.push({ id: nextUserId++, username, password, email });
+  return res.status(201).json({ success: true, message: 'User registered successfully' });
+});
 
 // Login Route
 router.post('/login', async (req, res) => {

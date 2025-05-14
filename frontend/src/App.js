@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import PrivateRoute from './components/PrivateRoute';
 import LoginScreen from './screens/LoginScreen';
+import RegisterScreen from './screens/RegisterScreen'; // ✅ Newly added import
 import BookRoom from './screens/BookRoom';
 import AddRoom from './screens/AddRoom';
 import StaffScreen from './screens/StaffScreen';
@@ -19,21 +20,22 @@ import { BookingProvider } from './context/BookingContext'; // ✅ Import the co
 
 function AppContent() {
   const location = useLocation();
-  const isLogin = location.pathname === '/login';
+  const isLoginOrRegister = location.pathname === '/login' || location.pathname === '/register';
 
   return (
     <>
-      {!isLogin && <Navbar />}
-      <div className={isLogin ? '' : 'd-flex'}>
-        {!isLogin && <Sidebar />}
+      {!isLoginOrRegister && <Navbar />}
+      <div className={isLoginOrRegister ? '' : 'd-flex'}>
+        {!isLoginOrRegister && <Sidebar />}
 
         <div
           className="flex-grow-1"
-          style={{ marginLeft: isLogin ? 0 : 220, padding: isLogin ? 0 : '20px' }}
+          style={{ marginLeft: isLoginOrRegister ? 0 : 220, padding: isLoginOrRegister ? 0 : '20px' }}
         >
           <Routes>
             {/* public */}
             <Route path="/login" element={<LoginScreen />} />
+            <Route path="/register" element={<RegisterScreen />} /> {/* ✅ New Route */}
 
             {/* protected */}
             <Route

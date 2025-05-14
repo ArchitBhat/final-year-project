@@ -23,6 +23,10 @@ export default function LoginScreen() {
     }
   };
 
+  const handleRegisterClick = () => {
+    navigate('/register');
+  };
+
   return (
     <div className="login-page">
       <div className="login-card">
@@ -58,8 +62,18 @@ export default function LoginScreen() {
             ></i>
           </div>
 
-          <div className="d-grid">
-            <button className="btn btn-primary">Login</button>
+          <div className="d-grid mb-3">
+            <button className="btn btn-primary" type="submit">Login</button>
+          </div>
+
+          <div className="text-center">
+            <button
+              type="button"
+              className="btn btn-outline-light"
+              onClick={handleRegisterClick}
+            >
+              Don't have an account? Register
+            </button>
           </div>
         </form>
       </div>
