@@ -3,11 +3,11 @@ import axios from 'axios';
 
 export default function Accountability() {
   const [profits, setProfits] = useState({ byDay: {}, byMonth: {}, byYear: {} });
-
+  
   useEffect(() => {
     axios.get('/profits')
-      .then(res => setProfits(res.data))
-      .catch(err => console.error(err));
+    .then(res => setProfits(res.data))
+    .catch(err => console.error(err));
   }, []);
 
   return (
